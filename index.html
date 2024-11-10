@@ -13,14 +13,13 @@
             margin: 0;
             height: 100vh;
             font-family: 'Press Start 2P', cursive;
-            background-image: url('https://cdn1.epicgames.com/ue/product/Screenshot/Screenshot23-1920x1080-a2f8a3c1f88f3b5716bdd8c9a2ea0c28.jpg?resize=1&w=1920');
+            background-image: url('https://i.imgur.com/A9zTlQB.gif');
             background-size: cover;
             background-position: center;
             color: white;
             position: relative;
             overflow: hidden;
         }
-
         .overlay {
             position: absolute;
             top: 0;
@@ -34,7 +33,7 @@
         h1,
         h2 {
             text-align: center;
-            color: #FFCB05;
+            color: #FFC300;
             text-shadow: 2px 2px 5px #2a75bb;
             z-index: 2;
         }
@@ -50,15 +49,15 @@
         }
 
         .project-btn.poke1 {
-            background-color: #ff5959;
+            background-color: #FFA64D;
         }
 
         .project-btn.poke2 {
-            background-color: #1E90FF;
+            background-color: #00A79E;
         }
 
         .project-btn.poke3 {
-            background-color: #48D1CC;
+            background-color: #4682B4;
         }
 
         .future-btn {
@@ -83,6 +82,22 @@
             margin: auto;
             top: 50%;
             transform: translateY(-50%);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                background-size: contain;
+                background-position: top;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                background-size: contain;
+                background-position: top;
+                height: 100vh;
+            }
         }
     </style>
 </head>
