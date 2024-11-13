@@ -1,264 +1,73 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>El Nido, Palawan</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    /* General Styling */
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    section {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      background-size: cover;
-      background-position: center;
-      height: 100vh;
-    }
-
-    /* Hero Section Styling */
-    .hero {
-      background-image: url('https://imgur.com/1SUBT92.jpeg');
-      padding: 0 20px;
-      height: 100vh;
-    }
-
-    .hero h1 {
-      font-size: 3vw;
-      margin-bottom: 20px;
-    }
-
-    .hero .btn {
-      font-size: 1.25rem;
-      padding: 10px 20px;
-    }
-
-    /* Blur overlay effect */
-    .blur-background {
-      background-size: cover;
-      background-position: center;
-    }
-
-    .blur-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(1px);
-      z-index: 1;
-    }
-
-    /* Content styling */
-    .content {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Transparent Blur Container Styling for Descriptions */
-    .blur-container {
-      background: rgba(0, 0, 0, 0.5);
-      /* Slightly transparent dark background */
-      padding: 20px;
-      border-radius: 10px;
-      backdrop-filter: blur(5px);
-      /* Increased blur for better visibility */
-      max-width: 600px;
-      margin-top: 20px;
-    }
-
-
-    /* Attraction Section Styling */
-    #attractions .attraction {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    #attractions .attraction img {
-      width: 100%;
-      border-radius: 10px;
-      transition: transform 0.3s;
-    }
-
-    #attractions .attraction img:hover {
-      transform: scale(1.05);
-    }
-
-    #attractions .attraction h3 {
-      margin-top: 10px;
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-    }
-
-    /* Remove underline on links */
-    #attractions .attraction a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      section {
-        height: auto;
-        padding: 60px 20px;
-      }
-
-      .hero h1 {
-        font-size: 6vw;
-      }
-
-      .hero .btn {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 576px) {
-      .hero h1 {
-        font-size: 7vw;
-      }
-
-      .hero .btn {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="content">
-      <h1>Welcome to El Nido, Palawan</h1>
-      <a href="#attractions" class="btn btn-light">Explore</a>
-    </div>
-  </section>
-
-  <!-- Top Attractions Section -->
-  <section id="attractions" class="blur-background" style="background-image: url('https://imgur.com/tOuTs8P.jpeg');">
-    <div class="blur-overlay"></div>
-    <div class="content">
-      <h2>Top Attractions in El Nido</h2>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="attraction">
-              <a href="#big-lagoon">
-                <img src="https://imgur.com/7nE0mFt.jpeg" alt="Big Lagoon">
-                <h3>Big Lagoon</h3>
-              </a>
+<!-- Individual Attraction Sections with White Containers -->
+    <section id="big-lagoon" class="attraction-details blur-background"
+        style="background-image: url('https://imgur.com/7nE0mFt.jpeg');">
+        <div class="content">
+            <h1>Big Lagoon</h1>
+            <div class="blur-container">
+                <p>The Big Lagoon is one of the most iconic attractions in El Nido, Palawan. Located on Miniloc Island,
+                    it is
+                    renowned for its breathtaking natural beauty, surrounded by towering limestone cliffs that rise
+                    dramatically
+                    from the water. The lagoon is accessible by boat or kayak, and its expansive waters are perfect for
+                    swimming,
+                    kayaking, or simply enjoying the serene atmosphere.</p>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="attraction">
-              <a href="#small-lagoon">
-                <img src="https://imgur.com/SwXEuYz.jpeg" alt="Small Lagoon">
-                <h3>Small Lagoon</h3>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="attraction">
-              <a href="#secret-lagoon">
-                <img src="https://imgur.com/8WTXvGD.jpeg" alt="Secret Lagoon">
-                <h3>Secret Lagoon</h3>
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="attraction">
-              <a href="#snake-island">
-                <img src="https://imgur.com/dZww1Xf.jpeg" alt="Snake Island">
-                <h3>Snake Island</h3>
-              </a>
-            </div>
-          </div>
+            <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Individual Attraction Sections with Blur Containers -->
-  <section id="big-lagoon" class="attraction-details blur-background"
-    style="background-image: url('https://imgur.com/7nE0mFt.jpeg');">
-    <div class="blur-overlay"></div>
-    <div class="content">
-      <h1>Big Lagoon</h1>
-      <div class="blur-container">
-        <p>The Big Lagoon is one of the most iconic attractions in El Nido, Palawan. Located on Miniloc Island, it is
-          renowned for its breathtaking natural beauty, surrounded by towering limestone cliffs that rise dramatically
-          from the water. The lagoon is accessible by boat or kayak, and its expansive waters are perfect for swimming,
-          kayaking, or simply enjoying the serene atmosphere.</p>
-      </div>
-      <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
-    </div>
-  </section>
+    <section id="small-lagoon" class="attraction-details blur-background"
+        style="background-image: url('https://imgur.com/SwXEuYz.jpeg');">
+        <div class="content">
+            <h1>Small Lagoon</h1>
+            <div class="blur-container">
+                <p>The Small Lagoon is a stunning natural gem located on Miniloc Island in El Nido, Palawan. It is
+                    characterized
+                    by its crystal-clear turquoise waters, surrounded by dramatic limestone cliffs that create a
+                    secluded,
+                    peaceful atmosphere. The lagoon is accessible by kayak or small boat through a narrow entrance,
+                    which adds an
+                    adventurous element to the visit.</p>
+            </div>
+            <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
+        </div>
+    </section>
 
-  <section id="small-lagoon" class="attraction-details blur-background"
-    style="background-image: url('https://imgur.com/SwXEuYz.jpeg');">
-    <div class="blur-overlay"></div>
-    <div class="content">
-      <h1>Small Lagoon</h1>
-      <div class="blur-container">
-        <p>The Small Lagoon is a stunning natural gem located on Miniloc Island in El Nido, Palawan. It is characterized
-          by its crystal-clear turquoise waters, surrounded by dramatic limestone cliffs that create a secluded,
-          peaceful
-          atmosphere. The lagoon is accessible by kayak or small boat through a narrow entrance, which adds an
-          adventurous
-          element to the visit.</p>
-      </div>
-      <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
-    </div>
-  </section>
+    <section id="secret-lagoon" class="attraction-details blur-background"
+        style="background-image: url('https://imgur.com/8WTXvGD.jpeg');">
+        <div class="content">
+            <h1>Secret Lagoon</h1>
+            <div class="blur-container">
+                <p>The Secret Lagoon is one of El Nido's most enchanting and hidden gems, located on Miniloc Island in
+                    Palawan.
+                    As its name suggests, the lagoon is somewhat of a secret, tucked away behind a narrow opening in a
+                    limestone
+                    cave. Visitors must swim or kayak through this small entrance to reach the lagoon, which adds an
+                    element of
+                    adventure and mystery to the experience.</p>
+            </div>
+            <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
+        </div>
+    </section>
 
-  <section id="secret-lagoon" class="attraction-details blur-background"
-    style="background-image: url('https://imgur.com/8WTXvGD.jpeg');">
-    <div class="blur-overlay"></div>
-    <div class="content">
-      <h1>Secret Lagoon</h1>
-      <div class="blur-container">
-        <p>The Secret Lagoon is one of El Nido's most enchanting and hidden gems, located on Miniloc Island in Palawan.
-          As
-          its name suggests, the lagoon is somewhat of a secret, tucked away behind a narrow opening in a limestone
-          cave.
-          Visitors must swim or kayak through this small entrance to reach the lagoon, which adds an element of
-          adventure
-          and mystery to the experience.</p>
-      </div>
-      <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
-    </div>
-  </section>
+    <section id="snake-island" class="attraction-details blur-background"
+        style="background-image: url('https://imgur.com/dZww1Xf.jpeg');">
+        <div class="content">
+            <h1>Snake Island</h1>
+            <div class="blur-container">
+                <p>Snake Island, also known as "Vigan Island," is a unique and picturesque sandbar located in El Nido,
+                    Palawan.
+                    It is renowned for its distinctive snake-like shape, which emerges from the turquoise waters at low
+                    tide. The
+                    island offers panoramic views of the surrounding islands and pristine waters, making it a popular
+                    spot for
+                    swimming, sunbathing, and exploring.</p>
+            </div>
+            <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
+        </div>
+    </section>
 
-  <section id="snake-island" class="attraction-details blur-background"
-    style="background-image: url('https://imgur.com/dZww1Xf.jpeg');">
-    <div class="blur-overlay"></div>
-    <div class="content">
-      <h1>Snake Island</h1>
-      <div class="blur-container">
-        <p>Snake Island, also known as "Vigan Island," is a unique and picturesque destination located in El Nido,
-          Palawan. It gets its name from the long, curving sandbar that resembles a snake as it stretches out into the
-          sea, connecting the island to a smaller islet. The sandbar is a striking feature, especially during low tide
-          when it becomes fully exposed, offering visitors a perfect place to walk along the shoreline and enjoy the
-          stunning views of the surrounding crystal-clear waters.</p>
-      </div>
-      <a href="#attractions" class="btn btn-secondary mt -4">Back</a>
-    </div>
-  </section>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
