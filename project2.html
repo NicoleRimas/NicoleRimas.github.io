@@ -45,25 +45,43 @@
 
         /* Suggestions */
         .suggestions {
-            background-color: #fff;
-            border: 1px solid #ccc;
+            background: rgba(30, 60, 114, 0.97); /* Disney blue, mostly opaque */
+            border: 1px solid #007bff;
             width: 300px;
-            max-height: 150px;
+            max-height: 180px;
             overflow-y: auto;
             position: absolute;
-            top: 60px;
+            top: 56px; /* Place right below the search bar */
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
+            z-index: 2000; /* Higher than overlay and movie-list */
+            box-sizing: border-box;
+            border-radius: 0 0 8px 8px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+            color: #fff;
+            backdrop-filter: blur(2px);
         }
 
         .suggestion-item {
             padding: 10px;
             cursor: pointer;
+            color: #fff;
+            background: transparent;
         }
 
         .suggestion-item:hover {
-            background-color: #ddd;
+            background-color: #ffe082;
+            color: #1e3c72;
+            font-weight: bold;
+            border-left: 4px solid #007bff;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            color: #1e3c72;
+            border-radius: 3px;
+            padding: 0 2px;
         }
 
         /* Movie List */
@@ -122,17 +140,20 @@
         /* Back Button and Search Button Common Style */
         .button-style {
             padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+            background-color: #ffe082;           /* Soft gold, matches heading */
+            color: #1e3c72;                      /* Disney blue for text */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s ease;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+            box-shadow: 0 2px 8px rgba(30,60,114,0.10);
         }
 
         .button-style:hover {
-            background-color: #0056b3;
+            background-color: #ffecb3;           /* Lighter gold on hover */
+            color: #0056b3;                      /* Slightly deeper blue on hover */
         }
 
         /* Fullscreen Overlay */
@@ -216,7 +237,16 @@
 <body>
     <!-- Hero Section -->
     <div class="hero">
-        <button id="searchButton" class="button-style" onclick="toggleSearchBar()">Search for Movies</button>
+        <div>
+            <h1 style="font-family: 'Segoe Script', 'Comic Sans MS', cursive, sans-serif; color: #ffe082; text-shadow: 2px 2px 8px #1e3c72, 0 2px 12px #000; font-size: 2.5rem; margin-bottom: 12px;">
+                Welcome to Disney Movies
+            </h1>
+            <p style="font-size: 1.25rem; color: #fff; text-shadow: 0 2px 8px #1e3c72; font-weight: 500; margin-bottom: 28px;">
+                ✨ Discover magical adventures, timeless classics, and new favorites from the world of Disney. <br>
+                Search for your next movie and let the magic begin!
+            </p>
+            <button id="searchButton" class="button-style" onclick="toggleSearchBar()" style="margin-top:24px;">Search for Movies</button>
+        </div>
     </div>
 
     <!-- Fullscreen Overlay -->
@@ -244,7 +274,8 @@
             if (fullscreenOverlay.style.display === 'none' || fullscreenOverlay.style.display === '') {
                 fullscreenOverlay.style.display = 'block';
                 searchContainer.style.display = 'block';
-                searchButton.style.display = 'none';
+                // Use visibility instead of display to keep button space
+                searchButton.style.visibility = 'hidden';
             }
         }
 
@@ -259,13 +290,39 @@
                     .then(data => {
                         const suggestions = data.results;
                         suggestionsContainer.innerHTML = '';
-                        if (suggestions.length === 0) {
+                        if (suggestions.length === 0) { 
                             suggestionsContainer.style.display = 'none';
                         } else {
                             suggestions.forEach(movie => {
                                 const suggestionItem = document.createElement('div');
                                 suggestionItem.classList.add('suggestion-item');
-                                suggestionItem.textContent = movie.title;
+                                suggestionItem.style.display = 'flex';
+                                suggestionItem.style.alignItems = 'center';
+                                suggestionItem.style.gap = '10px';
+
+                                // Movie poster or placeholder
+                                const posterUrl = movie.poster_path
+                                    ? `https://image.tmdb.org/t/p/w92${movie.poster_path}`
+                                    : 'https://via.placeholder.com/40x60?text=No+Image';
+
+                                const img = document.createElement('img');
+                                img.src = posterUrl;
+                                img.alt = movie.title;
+                                img.style.width = '40px';
+                                img.style.height = '60px';
+                                img.style.objectFit = 'cover';
+                                img.style.borderRadius = '4px';
+                                img.style.flexShrink = '0';
+
+                                // Highlight matching text in title
+                                const regex = new RegExp(`(${query})`, 'gi');
+                                const year = movie.release_date ? ` (${movie.release_date.slice(0, 4)})` : '';
+                                const titleSpan = document.createElement('span');
+                                titleSpan.innerHTML = movie.title.replace(regex, '<span class="highlight">$1</span>') + year;
+
+                                suggestionItem.appendChild(img);
+                                suggestionItem.appendChild(titleSpan);
+
                                 suggestionItem.onclick = () => {
                                     document.getElementById('search').value = movie.title;
                                     fetchMovies(movie.title);
@@ -303,8 +360,14 @@
                 movies.forEach(movie => {
                     const movieCard = document.createElement('div');
                     movieCard.classList.add('movie-card');
+                    movieCard.tabIndex = 0; // Make card focusable
 
-                    const moviePoster = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : 'https://via.placeholder.com/500x750';
+                    const moviePoster = movie.poster_path
+                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                        : 'https://via.placeholder.com/500x750?text=No+Image';
+
+                    const year = movie.release_date ? movie.release_date.slice(0, 4) : 'N/A';
+                    const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
 
                     const movieDetails = `
                         <div class="movie-details">
@@ -313,21 +376,27 @@
                     `;
 
                     movieCard.innerHTML = `
-                        <img src="${moviePoster}" alt="${movie.title}" onclick="toggleDetails(event)">
+                        <img src="${moviePoster}" alt="${movie.title}">
                         <h3>${movie.title}</h3>
+                        <div style="margin-bottom:8px;">
+                            <span style="color:#ffe082;font-size:1em;">Year: ${year}</span>
+                            <span style="color:#fff;font-size:0.95em; margin-left:10px;">⭐ ${rating}</span>
+                        </div>
                         ${movieDetails}
                     `;
 
+                    // Toggle details on click or Enter key
+                    movieCard.onclick = movieCard.onkeypress = function(e) {
+                        if (e.type === 'click' || e.key === 'Enter') {
+                            const details = movieCard.querySelector('.movie-details');
+                            if (details) {
+                                details.style.display = details.style.display === 'block' ? 'none' : 'block';
+                            }
+                        }
+                    };
+
                     movieList.appendChild(movieCard);
                 });
-            }
-        }
-
-        function toggleDetails(event) {
-            const movieCard = event.target.closest('.movie-card');
-            const movieDetails = movieCard.querySelector('.movie-details');
-            if (movieDetails) {
-                movieDetails.style.display = movieDetails.style.display === 'block' ? 'none' : 'block';
             }
         }
 
@@ -336,7 +405,8 @@
             const searchButton = document.getElementById('searchButton');
 
             fullscreenOverlay.style.display = 'none';
-            searchButton.style.display = 'block';
+            // Restore visibility so button doesn't move
+            searchButton.style.visibility = 'visible';
         }
     </script>
 </body>
