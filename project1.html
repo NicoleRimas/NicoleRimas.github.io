@@ -6,12 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>El Nido, Palawan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/palm-tree.png">
     <style>
         body,
         html {
+            font-family: 'Quicksand', Arial, sans-serif;
+            color: #f5f5f5;
+            background: #1a232a;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Pacifico', cursive;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 18px;
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            color: #ffe082;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            margin-top: 12px;
+            color: #ffe082;
+        }
+
+        section .content p,
+        .blur-container p {
+            margin-bottom: 1.2em;
+            color: #222;
+            font-family: 'Quicksand', Arial, sans-serif;
+            font-size: 1.08rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
         }
 
         section {
@@ -24,9 +66,15 @@
             background-size: cover;
             background-position: center;
             min-height: 100vh;
+            padding: 40px 0;
         }
+
+        /* Hero Section Styling */
         .hero {
-            background-image: url('https://imgur.com/1SUBT92.jpeg');
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%), url('https://imgur.com/1SUBT92.jpeg');
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
             padding: 0 20px;
         }
 
@@ -37,16 +85,28 @@
 
         .hero .btn {
             font-size: 1.25rem;
-            padding: 10px 20px;
+            padding: 14px 32px;
+            border-radius: 8px;
         }
+
+        /* White Background Container Styling for Descriptions */
         .blur-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            color: black;
+            background: rgba(255,255,255,0.55);
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.18);
+            color: #222;
             max-width: 600px;
             margin-top: 20px;
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 1.08rem;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
         }
+
+        /* Black Transparent Overlay */
         .background-overlay {
             position: absolute;
             top: 0;
@@ -56,10 +116,14 @@
             background-color: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
+
+        /* Content Above Overlay */
         .content {
             position: relative;
             z-index: 2;
         }
+
+        /* Attraction Section Styling */
         #attractions .attraction {
             margin-bottom: 20px;
             text-align: center;
@@ -67,9 +131,11 @@
 
         #attractions .attraction img {
             width: 100%;
-            height: auto;
+            height: 180px;
+            object-fit: cover;
             border-radius: 10px;
             transition: transform 0.3s;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
         }
 
         #attractions .attraction img:hover {
@@ -82,36 +148,59 @@
             color: white;
             text-decoration: none;
         }
+
+        /* Remove underline on links */
         #attractions .attraction a {
             text-decoration: none;
             color: inherit;
         }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            #attractions .attraction img {
+                height: 140px;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 6vw;
             }
 
             .hero .btn {
-                font-size: 1rem;
+                font-size: 1.1rem;
+                padding: 12px 24px;
             }
 
             .blur-container {
-                background-color: rgba(255, 255, 255, 0.8);
-                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 18px;
                 border-radius: 10px;
                 color: black;
-                max-width: 600px;
-                margin-top: 20px;
+                max-width: 95vw;
+                margin-top: 16px;
+                font-size: 1rem;
             }
+
+            section {
+                min-height: 70vh;
+                padding: 30px 0;
+            }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.3rem; }
+            h3 { font-size: 1.1rem; }
         }
 
+        /* Mobile View: Stack Attractions Vertically */
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 7vw;
             }
 
             .hero .btn {
-                font-size: 0.9rem;
+                font-size: 1rem;
+                padding: 10px 18px;
             }
 
             #attractions .row {
@@ -123,26 +212,108 @@
             #attractions .col-md-4,
             #attractions .col-sm-6 {
                 width: 100%;
-                max-width: 90%;
+                max-width: 95%;
                 margin-bottom: 20px;
             }
 
             .attraction-details {
-                padding: 60px 20px;
+                padding: 40px 10px;
+                min-height: 60vh;
             }
+
+            .blur-container {
+                padding: 12px;
+                font-size: 1rem;
+            }
+
+            .btn, .btn-secondary, .btn-light {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        /* Extra: Make attraction details stack vertically on mobile */
+        @media (max-width: 400px) {
+            .blur-container {
+                padding: 8px;
+                font-size: 0.95rem;
+            }
+            .hero h1 {
+                font-size: 8vw;
+            }
+            .attraction-details {
+                padding: 20px 2px;
+                min-height: 50vh;
+            }
+        }
+
+        /* Hide background images on very small screens for speed */
+        @media (max-width: 400px) {
+            section.blur-background {
+                background-image: none !important;
+                background-color: #2d3e50;
+            }
+        }
+
+        /* Style for Return to Main Page Button */
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            font-size: 1rem;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        section, .attraction-details {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        section.visible, .attraction-details.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .btn, .btn-secondary, .btn-light {
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+        .btn:hover, .btn-secondary:hover, .btn-light:hover {
+            background: #ffd54f !important;
+            color: #222 !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
         }
     </style>
 </head>
 
 <body>
 
-    <section class="hero">
+    <!-- Hero Section with ID for linking -->
+    <section id="hero" class="hero">
         <div class="background-overlay"></div>
         <div class="content">
             <h1>Welcome to El Nido, Palawan</h1>
             <a href="#attractions" class="btn btn-light">Explore</a>
         </div>
     </section>
+
+    <!-- Animated SVG Wave Divider -->
+    <div style="line-height:0;">
+      <svg viewBox="0 0 1440 120" width="100%" height="120" preserveAspectRatio="none" style="display:block;">
+        <path d="M0,32 C480,160 960,0 1440,96 L1440,120 L0,120 Z" fill="#ffe082">
+          <animate attributeName="d" dur="8s" repeatCount="indefinite"
+            values="
+              M0,32 C480,160 960,0 1440,96 L1440,120 L0,120 Z;
+              M0,64 C480,0 960,160 1440,32 L1440,120 L0,120 Z;
+              M0,32 C480,160 960,0 1440,96 L1440,120 L0,120 Z
+            " />
+        </path>
+      </svg>
+    </div>
+
+    <!-- Attractions Section -->
     <section id="attractions" class="blur-background"
         style="background-image: url('https://imgur.com/tOuTs8P.jpeg'); min-height: 100vh;">
         <div class="background-overlay"></div>
@@ -186,6 +357,8 @@
             </div>
         </div>
     </section>
+
+    <!-- Attraction Detail Sections with Back Button -->
     <section id="big-lagoon" class="attraction-details blur-background"
         style="background-image: url('https://imgur.com/7nE0mFt.jpeg');">
         <div class="content">
@@ -229,20 +402,156 @@
     </section>
 
     <section id="snake-island" class="attraction-details blur-background"
-        style="background-image: url('https://imgur.com/dZww1Xf.jpeg');">
-        <div class="content">
-            <h1>Snake Island</h1>
-            <div class="blur-container">
-                <p>Snake Island, also known as "Vigan Island," is a unique and picturesque sandbar located in El Nido,
-                    Palawan. It is renowned for its distinctive snake-like shape, which emerges from the turquoise waters at low
-                    tide. The island offers panoramic views of the surrounding islands and pristine waters, making it a popular
-                    spot for swimming, sunbathing, and exploring.</p>
-            </div>
-            <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
+    style="background-image: url('https://imgur.com/dZww1Xf.jpeg');">
+    <div class="content">
+        <h1>Snake Island</h1>
+        <div class="blur-container">
+            <p>Snake Island, also known as "Vigan Island," is a unique and picturesque sandbar located in El Nido,
+                Palawan. It is renowned for its distinctive snake-like shape, which emerges from the turquoise waters at low
+                tide. The island offers panoramic views of the surrounding islands and pristine waters, making it a popular
+                spot for swimming, sunbathing, and exploring.</p>
         </div>
-    </section>
+        <a href="#attractions" class="btn btn-secondary mt-3">Back</a>
+    </div>
+</section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Scroll to Top Button -->
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="scrollTopBtn" title="Go to top" style="display:none;position:fixed;bottom:80px;right:20px;z-index:101;padding:12px 18px;border-radius:50%;background:#ffe082;color:#222;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);font-size:1.5rem;">
+    ↑
+</button>
+
+<script>
+    window.onscroll = function() {
+        document.getElementById("scrollTopBtn").style.display =
+            (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? "block" : "none";
+    };
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function revealSections() {
+        document.querySelectorAll('section, .attraction-details').forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 80) {
+                sec.classList.add('visible');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealSections);
+    revealSections();
+});
+</script>
+
+<!-- Fun Fact Button -->
+<button id="showFactBtn" style="position:fixed;bottom:80px;left:20px;z-index:120;background:#ffe082;color:#222;border:none;padding:12px 18px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.18);font-size:1.3rem;cursor:pointer;" title="Show another fun fact">💡</button>
+<script>
+const facts = [
+  "El Nido has over 45 islands and islets to explore!",
+  "The limestone cliffs in El Nido are over 250 million years old.",
+  "Big Lagoon was featured in the movie 'Bourne Legacy.'",
+  "El Nido means 'The Nest' in Spanish, named after swiftlet bird nests.",
+  "Snake Island is named for its unique sandbar shape, not for snakes!"
+];
+
+let currentFactIndex = -1;
+let factBox = null;
+let factInterval = null;
+let isTransitioning = false;
+
+// Remove any existing fact box before showing a new one
+function removeFactBox(callback) {
+  if (factBox) {
+    factBox.style.opacity = "0";
+    factBox.style.transform = "translateX(-50%) translateY(40px)";
+    isTransitioning = true;
+    setTimeout(() => {
+      if (factBox && factBox.parentNode) factBox.parentNode.removeChild(factBox);
+      factBox = null;
+      isTransitioning = false;
+      if (typeof callback === "function") callback();
+    }, 500);
+  } else {
+    if (typeof callback === "function") callback();
+  }
+}
+
+// Show fun fact with smooth slide/fade transition and responsive width
+function showFunFact(next = true) {
+  if (isTransitioning) return; // Prevent overlapping transitions
+
+  removeFactBox(() => {
+    // Get next fact index
+    if (next) {
+      currentFactIndex = (currentFactIndex + 1) % facts.length;
+    } else if (currentFactIndex === -1) {
+      currentFactIndex = Math.floor(Math.random() * facts.length);
+    }
+    const fact = facts[currentFactIndex];
+    factBox = document.createElement('div');
+    factBox.textContent = "🌴 Fun Fact: " + fact;
+    factBox.style.position = "fixed";
+    factBox.style.bottom = "30px";
+    factBox.style.left = "50%";
+    factBox.style.maxWidth = "90vw";
+    factBox.style.width = "auto";
+    factBox.style.minWidth = "220px";
+    factBox.style.boxSizing = "border-box";
+    factBox.style.transform = "translateX(-50%) translateY(40px)";
+    factBox.style.background = "#ffe082";
+    factBox.style.color = "#222";
+    factBox.style.padding = "16px 28px";
+    factBox.style.borderRadius = "24px";
+    factBox.style.boxShadow = "0 2px 12px rgba(0,0,0,0.15)";
+    factBox.style.fontFamily = "'Quicksand', Arial, sans-serif";
+    factBox.style.fontWeight = "600";
+    factBox.style.zIndex = "999";
+    factBox.style.fontSize = "1.1rem";
+    factBox.style.cursor = "pointer";
+    factBox.style.opacity = "0";
+    factBox.style.transition = "transform 0.6s cubic-bezier(.4,0,.2,1), opacity 0.6s cubic-bezier(.4,0,.2,1)";
+    factBox.title = "Click to close";
+    factBox.onclick = () => removeFactBox();
+    document.body.appendChild(factBox);
+
+    // Responsive font size for mobile
+    if (window.innerWidth < 500) {
+      factBox.style.fontSize = "0.95rem";
+      factBox.style.padding = "12px 10px";
+      factBox.style.minWidth = "140px";
+    }
+
+    // Trigger smooth slide-in and fade-in
+    setTimeout(() => {
+      if (factBox) {
+        factBox.style.transform = "translateX(-50%) translateY(0)";
+        factBox.style.opacity = "1";
+      }
+    }, 50);
+  });
+}
+
+// Show a fun fact automatically on page load and start interval
+window.addEventListener('DOMContentLoaded', function() {
+  showFunFact();
+  factInterval = setInterval(() => {
+    showFunFact();
+  }, 10000); // 10 seconds
+});
+
+// Show another fun fact on button click (resets timer)
+document.getElementById('showFactBtn').onclick = function() {
+  showFunFact();
+  clearInterval(factInterval);
+  factInterval = setInterval(() => {
+    showFunFact();
+  }, 10000);
+};
+
+// Optional: Remove fun fact box on resize to avoid layout issues
+window.addEventListener('resize', () => removeFactBox());
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
